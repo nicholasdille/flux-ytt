@@ -3,6 +3,6 @@
 timezone: Europe/Berlin
 nginx:
   port: 80
-  tag: latest
+  tag: 1.14.2
   matchLabels:
     pod: nginx
