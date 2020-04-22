@@ -2,4 +2,4 @@ version: 1
 patchUpdated:
   generators:
   - command: ytt -f .
-  patchFile: flux-patch.yaml
+  patchFile: ../flux-patch.yaml
