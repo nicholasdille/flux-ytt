@@ -4,6 +4,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
+  annotations:
+    fluxcd.io/automate: "true"
+    fluxcd.io/tag.nginx: "semver:~1"
 spec:
   replicas: 1
   selector:
