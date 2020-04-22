@@ -5,7 +5,7 @@ kind: Deployment
 metadata:
   name: nginx
   annotations:
-    fluxcd.io/automate: "true"
+    fluxcd.io/automated: "true"
     fluxcd.io/tag.nginx: "semver:~1"
 spec:
   replicas: 1
