@@ -1,0 +1,31 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels: #@ data.values.nginx.matchLabels
+  template:
+    metadata:
+      labels: #@ data.values.nginx.matchLabels
+    spec:
+      volumes:
+      - name: data
+        configMap:
+          name: nginx
+      - name: tz-config
+        hostPath:
+          path: #@ "/usr/share/zoneinfo/" + data.values.timezone
+      containers:
+      - name: main
+        image: #@ "nginx:{}".format(data.values.nginx.tag)
+        ports:
+        - containerPort: #@ data.values.nginx.port
+        volumeMounts:
+        - name: data
+          mountPath: /var/share/nginx/html
+        - name: tz-config
+          mountPath: /etc/localtime
